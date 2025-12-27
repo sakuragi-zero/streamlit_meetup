@@ -1,0 +1,17 @@
+{
+    "name": "streamlit_meetup",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12",
+    "workspaceFolder": "/workspaces/st",
+    "features": {
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "22"
+        }
+    },
+    "postCreateCommand": "sh -c \"pip install uv streamlit && sudo apt-get update && sudo apt-get install -y chromium\"",
+    "portsAttributes": {
+        "5173": {
+            "label": "streamlit_meetup",
+            "onAutoForward": "notify"
+        }
+    }
+}

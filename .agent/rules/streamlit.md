@@ -1,3 +1,7 @@
+---
+trigger: always_on
+---
+
 # AGENT.md
 
 ## Purpose（目的）
