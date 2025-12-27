@@ -12,19 +12,26 @@ Ensure that `chromium` is installed for capturing screenshots.
 which chromium || (sudo apt-get update && sudo apt-get install -y chromium)
 ```
 
-### 2. Capture Screenshot
-Capture the running Streamlit app (assumes it's running on port 8501).
-We use a virtual time budget to allow Streamlit's animations and charts to render.
+### 2. Run Streamlit (if not running)
+Start the Streamlit application in headless mode. 
+**IMPORTANT**: Wait for at least 20 seconds to ensure the loading screen has cleared and charts have finished rendering.
 ```bash
-chromium --headless --no-sandbox --disable-gpu --virtual-time-budget=15000 --screenshot="/home/vscode/.gemini/antigravity/brain/d842d632-3986-4301-8a47-a1d283cb5bb1/latest_dashboard.png" --window-size=1280,1024 http://localhost:8501
+streamlit run app.py --server.headless true &
+sleep 20
 ```
 
-### 3. Verification
+### 3. Capture Screenshot
+Capture the running Streamlit app.
+```bash
+chromium --headless --no-sandbox --disable-gpu --virtual-time-budget=20000 --screenshot="/home/vscode/.gemini/antigravity/brain/aa519c18-f8f8-4667-a126-63377eda2b97/latest_dashboard.png" --window-size=1280,1024 http://localhost:8501
+```
+
+### 4. Verification
 Confirm the screenshot was generated.
 ```bash
-ls -l /home/vscode/.gemini/antigravity/brain/d842d632-3986-4301-8a47-a1d283cb5bb1/latest_dashboard.png
+ls -l /home/vscode/.gemini/antigravity/brain/aa519c18-f8f8-4667-a126-63377eda2b97/latest_dashboard.png
 ```
 
-### 4. Instruction for the Agent
+### 5. Instruction for the Agent
 Once the screenshot is generated, the agent should update the `walkthrough.md` with:
-`![Dashboard Screenshot](/home/vscode/.gemini/antigravity/brain/d842d632-3986-4301-8a47-a1d283cb5bb1/latest_dashboard.png)`
+`![Dashboard Screenshot](/home/vscode/.gemini/antigravity/brain/aa519c18-f8f8-4667-a126-63377eda2b97/latest_dashboard.png)`
