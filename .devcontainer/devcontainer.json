@@ -7,7 +7,7 @@
             "version": "22"
         }
     },
-    "postCreateCommand": "sh -c \"pip install uv streamlit && sudo apt-get update && sudo apt-get install -y chromium\"",
+    "postCreateCommand": "sh -c \"pip install uv streamlit && sudo apt-get update && sudo apt-get install -y chromium fonts-noto-cjk fonts-noto-color-emoji\"",
     "portsAttributes": {
         "5173": {
             "label": "streamlit_meetup",
