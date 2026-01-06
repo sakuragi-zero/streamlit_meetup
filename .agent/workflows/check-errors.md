@@ -9,15 +9,16 @@ description: Check for Streamlit execution errors and logical crashes.
 ### 1. アプリケーションの試行起動
 バックグラウンドでStreamlitを起動し、ログをファイルに出力します。
 ```bash
+mkdir -p log
 pgrep -f "streamlit run" | xargs -r kill
-nohup streamlit run app.py --server.headless true > error_detection.log 2>&1 &
+nohup streamlit run app.py --server.headless true > log/error_detection.log 2>&1 &
 sleep 15
 ```
 
 ### 2. エラーログの走査
 出力されたログに `Traceback`, `Error`, `Exception` などのキーワードが含まれていないか確認します。
 ```bash
-grep -Ei "traceback|error|exception" error_detection.log || echo "No obvious errors found in log."
+grep -Ei "traceback|error|exception" log/error_detection.log || echo "No obvious errors found in log."
 ```
 
 ### 3. プロセスのクリーンアップ
