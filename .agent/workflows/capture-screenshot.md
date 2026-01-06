@@ -17,7 +17,7 @@ Start the Streamlit application in headless mode.
 **IMPORTANT**: Wait for at least 20 seconds to ensure the loading screen has cleared and charts have finished rendering.
 ```bash
 streamlit run app.py --server.headless true &
-sleep 20
+sleep 120
 ```
 
 ### 3. Capture Screenshot

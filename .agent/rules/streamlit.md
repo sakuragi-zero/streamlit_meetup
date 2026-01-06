@@ -4,6 +4,15 @@ trigger: always_on
 
 # AGENT.md
 
+
+## Project Structure Policy
+- Implementation Plan、Walkthroughを日本語で出力する
+- 作成したAPPは作成後にテストを行わない
+- 作成したイメージはassets/に保存する
+- スクリーンショット、動画はプロジェクトのtests/に上書き保存する
+- assets/やassets/に保存する時は名前をつけて保存する
+
+
 ## Purpose（目的）
 
 このリポジトリのAIエージェントは、  
@@ -79,6 +88,7 @@ trigger: always_on
 
 - `.streamlit/config.toml` を利用し、全体テーマを統一する
 - 配色・フォントはCSSで上書きする前にテーマ設定を検討する
+- 文字と背景の色は視認性を重視し異なる色で作成する
 
 ---
 
@@ -152,3 +162,4 @@ trigger: always_on
 を最優先に設計されている。
 
 必要以上に「Webアプリ化」しないこと。
+Streamlit runでの都度、動作確認は不要。
