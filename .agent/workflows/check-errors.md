@@ -9,10 +9,19 @@ description: Check for Streamlit execution errors and logical crashes.
 ### 1. アプリケーションの試行起動
 バックグラウンドでStreamlitを起動し、ログをファイルに出力します。
 ```bash
-mkdir -p log
+# ポートが既に使用されている場合は解放
 pgrep -f "streamlit run" | xargs -r kill
-nohup streamlit run app.py --server.headless true > log/error_detection.log 2>&1 &
+mkdir -p log
+nohup streamlit run app.py --server.headless true --server.port 8501 > log/error_detection.log 2>&1 &
 sleep 15
+```
+
+### 2. 画面上のエラー確認 (ブラウザチェック)
+ブラウザを使用して実際の画面に表示されているエラーメッセージや、不完全なレンダリングを検出します。
+```bash
+# エージェントへの指示: 
+# http://localhost:8501 にアクセスし、画面内に "Error", "Exception", "Traceback" 
+# という文字が表示されていないか、または画面が真っ白でないか確認してください。
 ```
 
 ### 2. エラーログの走査

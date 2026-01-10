@@ -10,7 +10,7 @@ description: 既存のアプリ関連フォルダ（assets, services, views, tem
 // turbo
 1. 既存のフォルダとファイルを削除します：
 ```bash
-rm -rf assets/ services/ views/ templates/ tests/ app.py
+rm -rf assets/ services/ views/ templates/ tests/ log/ app.py *.db
 ```
 
 2. 削除が完了したことを確認します：
