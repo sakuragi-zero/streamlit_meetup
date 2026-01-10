@@ -1,7 +1,7 @@
 {
     "name": "streamlit_meetup",
     "image": "mcr.microsoft.com/devcontainers/python:3.12",
-    "workspaceFolder": "/workspaces/st",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "features": {
         "ghcr.io/devcontainers/features/node:1": {
             "version": "22"
