@@ -1,0 +1,20 @@
+# Streamlit Logs
+log/
+*.log
+nohup.out
+
+# Tests and Screenshots
+tests/
+
+# Python environment
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# OS and IDE
+.DS_Store
+.vscode/
