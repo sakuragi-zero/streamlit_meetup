@@ -26,13 +26,7 @@ Verify if `chromium` is installed (required for automated screenshots/testing).
 chromium --version || chromium-browser --version
 ```
 
-### 4. Check Workspace Structure
-Ensure the necessary project directories exist.
-```bash
-ls -d assets services views
-```
-
-### 5. Summary and Fixes
+### 4. Summary and Fixes
 If any of the above fail, run the following to attempt a repair:
 ```bash
 pip install uv streamlit && sudo apt-get update && sudo apt-get install -y chromium

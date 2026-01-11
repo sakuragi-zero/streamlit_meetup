@@ -1,17 +1,18 @@
 {
-    "name": "streamlit_meetup",
-    "image": "mcr.microsoft.com/devcontainers/python:3.12",
-    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-    "features": {
-        "ghcr.io/devcontainers/features/node:1": {
-            "version": "22"
-        }
-    },
-    "postCreateCommand": "bash .devcontainer/post-create.sh",
-    "portsAttributes": {
-        "5173": {
-            "label": "streamlit_meetup",
-            "onAutoForward": "notify"
-        }
+  "name": "streamlit_meetup",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
     }
+  },
+  "portsAttributes": {
+    "5173": {
+      "label": "streamlit_meetup",
+      "onAutoForward": "notify"
+    }
+  }
 }

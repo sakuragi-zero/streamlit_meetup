@@ -6,7 +6,7 @@ trigger: always_on
 
 
 ## Project Structure Policy
-- Implementation Plan、Walkthroughを日本語で出力する
+- Implementation Plan、Walkthrough、Taskを日本語で出力する
 - 作成したAPPは作成後にテストを行わない
 - 作成したイメージはassets/に保存する
 - スクリーンショット、動画はプロジェクトのtests/に上書き保存する
