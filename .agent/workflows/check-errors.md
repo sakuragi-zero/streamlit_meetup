@@ -4,37 +4,39 @@ description: Check for Streamlit execution errors and logical crashes.
 
 // turbo-all
 
-このワークフローは、Streamlitアプリケーションの実行時エラーを検出します。
+このワークフローは、Streamlitアプリケーションの実行時エラー（起動時および初回アクセス時）を検出します。
 
 ### 1. アプリケーションの試行起動
 バックグラウンドでStreamlitを起動し、ログをファイルに出力します。
 ```bash
-# ポートが既に使用されている場合は解放
-pgrep -f "streamlit run" | xargs -r kill
+# プロセスのクリーンアップ
+pgrep -f "streamlit run" | xargs -r kill || true
 mkdir -p log
-nohup streamlit run app.py --server.headless true --server.port 8501 > log/error_detection.log 2>&1 &
-sleep 15
+export STREAMLIT_SERVER_HEADLESS=true
+nohup streamlit run app.py --server.port 8501 --server.enableCORS=false --server.enableXsrfProtection=false > log/error_detection.log 2>&1 &
+# サーバーの起動待機
+until curl -s http://localhost:8501/healthz > /dev/null; do sleep 1; done
 ```
 
-### 2. 画面上のエラー確認 (ブラウザチェック)
-ブラウザを使用して実際の画面に表示されているエラーメッセージや、不完全なレンダリングを検出します。
+### 2. アクセストリガー（実行時エラーの誘発）
+実際にページにアクセスして、セッション開始時に発生するエラーをログに出力させます。
 ```bash
-# エージェントへの指示: 
-# http://localhost:8501 にアクセスし、画面内に "Error", "Exception", "Traceback" 
-# という文字が表示されていないか、または画面が真っ白でないか確認してください。
+chromium --headless --no-sandbox --disable-gpu --dump-dom http://localhost:8501 > /dev/null 2>&1
+sleep 5
 ```
 
-### 2. エラーログの走査
-出力されたログに `Traceback`, `Error`, `Exception` などのキーワードが含まれていないか確認します。
+### 3. エラーログの走査
+出力されたログに `Traceback`, `Error`, `Exception`, `Uncaught app execution` などのキーワードが含まれていないか確認します。
 ```bash
-grep -Ei "traceback|error|exception" log/error_detection.log || echo "No obvious errors found in log."
+grep -Ei "traceback|error|exception|uncaught" log/error_detection.log || echo "No obvious errors found in log."
 ```
 
-### 3. プロセスのクリーンアップ
+### 4. プロセスのクリーンアップ
 検証用のプロセスを終了します。
 ```bash
-pgrep -f "streamlit run" | xargs -r kill
+pgrep -f "streamlit run" | xargs -r kill || true
 ```
 
-### 4. 判定
-もしログにエラーが含まれていた場合は、該当箇所を修正してください。画面が白い場合は、ライブラリの読み込み不良やGeoJSONの取得失敗などが考えられます。
+### 5. 判定
+もしログにエラーが含まれていた場合は、該当箇所を修正してください。
+特にセッション開始後の `NameError` や `ImportError` は、アクセスを発生させるまでログに出ないため注意が必要です。
