@@ -13,6 +13,7 @@ description: Check for Streamlit execution errors and logical crashes.
 pgrep -f "streamlit run" | xargs -r kill || true
 mkdir -p log
 export STREAMLIT_SERVER_HEADLESS=true
+export PYTHONUNBUFFERED=1
 nohup streamlit run app.py --server.port 8501 --server.enableCORS=false --server.enableXsrfProtection=false > log/error_detection.log 2>&1 &
 # サーバーの起動待機
 until curl -s http://localhost:8501/healthz > /dev/null; do sleep 1; done
