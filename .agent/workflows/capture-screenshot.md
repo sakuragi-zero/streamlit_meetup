@@ -8,11 +8,11 @@ description: Run Streamlit in headless mode, take a screenshot, and update the w
 
 
 ### 1. アプリケーションの起動
-バックグラウンドで Streamlit を起動します。ログはすべて `log/` ディレクトリに出力されます。
+Streamlit をバックグラウンドで起動します。**※ nohup は絶対に使用しないでください。**
+ログはすべて `log/` ディレクトリに出力されます。
 ```bash
-pgrep -f "streamlit run" | xargs -r kill || true
 mkdir -p log
-streamlit run app.py
+streamlit run app.py > log/streamlit.log 2>&1 &
 # 複雑な地図のレンダリング待ち
 sleep 480
 ```
