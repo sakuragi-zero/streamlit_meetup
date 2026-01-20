@@ -42,3 +42,21 @@ Plotlyのバージョンによって、あるいはPython版とJS版の違いに
 ### 解決策
 - **スネークケースの推奨**: Python版 Plotly では、`titlefont` ではなく `title_font` のようにスネークケースが標準となっている箇所が多くあります。
 - **エラーメッセージの確認**: `Bad property path` エラーが出た場合、Plotlyが表示する「Did you mean...?」の提案が正解であることが多いです。
+
+## 6. Layout: HTML Wrapperの誤用（空要素の発生）
+
+Streamlitにおいて、`st.markwon` で `<div>` 開始タグと `</div>` 終了タグを個別に呼び出して、その間に Streamlit ウィジェット（`st.plotly_chart` 等）を配置しようとしても、期待通りにウィジェットは `div` 内に含まれません。Streamlit の仕組み上、`st.markdown` はそのコンポーネント自体で完結するHTMLを生成するだけであり、後続の Python コードで生成されるコンポーネントを内包することはできません。
+
+### 間違いの例
+```python
+st.markdown('<div class="card">', unsafe_allow_html=True)
+st.plotly_chart(fig) # 実際には div の外（後）に出力される
+st.markdown('</div>', unsafe_allow_html=True)
+```
+
+このコードを実行すると、空の `<div class="card"></div>` が描画された後に、グラフが描画されます。スタイルが適用された空枠だけが表示される「お化けウィジェット」の原因となります。
+
+### 解決策
+- **単一の st.markdown 内で完結させる**: 純粋な HTML コンテンツであれば、1つの `st.markdown` 呼び出しにすべて含めます。
+- **st.container の活用**: グルーピングが必要な場合は `st.container()` を使用します（ただし、標準機能だけでは自由なクラス付与はできません）。
+- **スタイルの適用方法**: ウィジェットを HTML でラップするのではなく、CSS セレクタを工夫して（例: `data-testid` 属性など）スタイルを適用するか、背景色などはグラフ自体の設定（Plotly の `paper_bgcolor` など）で行います。
