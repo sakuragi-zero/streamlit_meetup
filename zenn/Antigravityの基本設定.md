@@ -1,4 +1,5 @@
 ## Google Antigravity起動後の設定手順
+※必要最低限の設定だけ行います。
 
 ### Choose setup flow （設定のインポートを選択）
 既存のエディターから設定をインポートする必要がない場合は**Start fresh**を選択してください。
@@ -7,12 +8,16 @@
 - import from Windsurf
 - import from Cursor
 
+---
+
 ### Choose an editor thome type （エディターテーマの選択）
 お好みで選択してください。
 - Dark
 - Tokyo Night
 - Light
 - Solarized Light
+
+---
 
 ### How do you want to use the Antigravity Agent? （エージェントモードの選択）
 エージェントの振る舞いを決める重要な設定です。最初はAgent-assistedまたはReview-drivenがおすすめです。
@@ -39,6 +44,8 @@
 - Request Review （レビューを要求）
 エージェントは常にレビューを求めます。
 
+---
+
 ### 設定
 お好みで設定してください。
 - Keybindings (Normal / vim)
@@ -48,5 +55,5 @@
 - Command Line
 ターミナルから**agy**コマンドでAntigravityを開けるようにする
 
-### Googleアカウントのログイン
-### 利用規約の確認
+最後にGoogleアカウントへのログインと利用規約の確認が終われば完了です。
+お疲れ様でした!
