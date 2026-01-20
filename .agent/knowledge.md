@@ -45,7 +45,7 @@ Plotlyのバージョンによって、あるいはPython版とJS版の違いに
 
 ## 6. Layout: HTML Wrapperの誤用（空要素の発生）
 
-Streamlitにおいて、`st.markwon` で `<div>` 開始タグと `</div>` 終了タグを個別に呼び出して、その間に Streamlit ウィジェット（`st.plotly_chart` 等）を配置しようとしても、期待通りにウィジェットは `div` 内に含まれません。Streamlit の仕組み上、`st.markdown` はそのコンポーネント自体で完結するHTMLを生成するだけであり、後続の Python コードで生成されるコンポーネントを内包することはできません。
+Streamlitにおいて、`st.markdown` で `<div>` 開始タグと `</div>` 終了タグを個別に呼び出して、その間に Streamlit ウィジェット（`st.plotly_chart` 等）を配置しようとしても、期待通りにウィジェットは `div` 内に含まれません。Streamlit の仕組み上、`st.markdown` はそのコンポーネント自体で完結するHTMLを生成するだけであり、後続の Python コードで生成されるコンポーネントを内包することはできません。
 
 ### 間違いの例
 ```python
