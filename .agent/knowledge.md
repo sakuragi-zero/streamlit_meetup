@@ -42,3 +42,13 @@ Plotlyのバージョンによって、あるいはPython版とJS版の違いに
 ### 解決策
 - **スネークケースの推奨**: Python版 Plotly では、`titlefont` ではなく `title_font` のようにスネークケースが標準となっている箇所が多くあります。
 - **エラーメッセージの確認**: `Bad property path` エラーが出た場合、Plotlyが表示する「Did you mean...?」の提案が正解であることが多いです。
+
+## 6. 非推奨パラメータの回避（use_container_width）
+
+Streamlit 1.49 (または 1.48) 以降、`use_container_width` パラメータは非推奨となり、将来削除される予定です（2025年末以降）。
+
+### 解決策
+- **`width` パラメータの使用**: 代わりに `width` 引数を使用してください。
+  - `use_container_width=True` の場合 → `width="stretch"`
+  - `use_container_width=False` の場合 → `width="content"`（またはデフォルト動作）
+- **対象コンポーネント**: `st.dataframe`, `st.plotly_chart`, `st.image` など多岐にわたります。
