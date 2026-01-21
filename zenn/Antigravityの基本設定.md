@@ -19,7 +19,7 @@
 今回のハンズオンでは[Secure Mode](https://antigravity.google/docs/secure-mode)を選択してください。
 - Secure Mode (AIの操作は全て人間の承認が必要 + セキュリティ制御を強化)
 - Agent-driven development （ほぼ全ての作業をAIが主導して進めるモード：上級者向け）
-- Agent-assisted development （が人間が主導しつつAI必に応じて要積極的に支援するモード）
+- Agent-assisted development （人間が主導しつつAIが必要に応じて積極的に支援するモード）
 - Review-driven development （AIの操作は全て人間の承認が必要な安全重視モード）
 - Custom configuration （開発の自動化レベルや権限を細かく自分で設定できるモード）
 

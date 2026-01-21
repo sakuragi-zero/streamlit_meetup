@@ -10,7 +10,7 @@
     }
   },
   "portsAttributes": {
-    "5173": {
+    "8501": {
       "label": "streamlit_meetup",
       "onAutoForward": "notify"
     }
