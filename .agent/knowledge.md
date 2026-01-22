@@ -60,3 +60,13 @@ st.markdown('</div>', unsafe_allow_html=True)
 - **単一の st.markdown 内で完結させる**: 純粋な HTML コンテンツであれば、1つの `st.markdown` 呼び出しにすべて含めます。
 - **st.container の活用**: グルーピングが必要な場合は `st.container()` を使用します（ただし、標準機能だけでは自由なクラス付与はできません）。
 - **スタイルの適用方法**: ウィジェットを HTML でラップするのではなく、CSS セレクタを工夫して（例: `data-testid` 属性など）スタイルを適用するか、背景色などはグラフ自体の設定（Plotly の `paper_bgcolor` など）で行います。
+
+## 7. 非推奨パラメータの回避（use_container_width）
+
+Streamlit 1.49 (または 1.48) 以降、`use_container_width` パラメータは非推奨となり、将来削除される予定です（2025年末以降）。
+
+### 解決策
+- **`width` パラメータの使用**: 代わりに `width` 引数を使用してください。
+  - `use_container_width=True` の場合 → `width="stretch"`
+  - `use_container_width=False` の場合 → `width="content"`（またはデフォルト動作）
+- **対象コンポーネント**: `st.dataframe`, `st.plotly_chart`, `st.image` など多岐にわたります。
